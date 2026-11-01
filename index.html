@@ -25,6 +25,16 @@
       box-sizing: border-box;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+    }
+
     body {
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
       line-height: 1.7;
@@ -36,20 +46,82 @@
     }
 
     header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
       background: linear-gradient(135deg, var(--primary-blue-dark) 0%, var(--primary-blue) 100%);
       color: #ffffff;
-      padding: 26px 20px;
-      text-align: center;
       box-shadow: 0 3px 12px rgba(0, 42, 92, 0.18);
       border-bottom: 3px solid #00326b;
     }
 
+    .header-inner {
+      width: 100%;
+      padding: 14px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
     header h1 {
       margin: 0;
-      font-size: clamp(1.4rem, 3.5vw, 2rem);
+      font-size: 1.18rem;
       font-weight: 700;
       letter-spacing: -0.01em;
       line-height: 1.3;
+      text-align: left;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    header h1 a {
+      color: #ffffff;
+      text-decoration: none;
+    }
+
+    .site-nav {
+      margin-left: auto;
+      overflow-x: auto;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+
+    .site-nav::-webkit-scrollbar {
+      display: none;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 4px;
+      width: max-content;
+      margin-left: auto;
+    }
+
+    .site-nav a {
+      display: inline-block;
+      padding: 7px 11px;
+      font-size: 0.86rem;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.86);
+      text-decoration: none;
+      white-space: nowrap;
+      border-radius: 6px;
+      transition: color 0.15s ease, background-color 0.15s ease;
+    }
+
+    .site-nav a:hover,
+    .site-nav a:focus-visible {
+      color: #ffffff;
+      background-color: rgba(255, 255, 255, 0.14);
+    }
+
+    .site-nav a.active {
+      color: #ffffff;
+      font-weight: 600;
+      background-color: rgba(255, 255, 255, 0.22);
     }
 
     main.container {
@@ -83,6 +155,11 @@
       padding-left: 12px;
       border-left: 4px solid var(--primary-blue);
       line-height: 1.35;
+      scroll-margin-top: 84px;
+    }
+
+    .overview-section p {
+      text-align: justify;
     }
 
     p {
@@ -148,6 +225,18 @@
       color: var(--primary-blue-dark);
       text-align: left;
       overflow-wrap: break-word;
+    }
+
+    .email-box a {
+      color: var(--primary-blue-dark);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      transition: color 0.15s ease;
+    }
+
+    .email-box a:hover,
+    .email-box a:focus-visible {
+      color: var(--primary-blue);
     }
 
     .dates-box {
@@ -277,6 +366,34 @@
       line-height: 1.35;
     }
 
+    @media (max-width: 920px) {
+      .header-inner {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+        padding: 12px 16px 10px;
+      }
+
+      header h1 {
+        font-size: 1.1rem;
+        white-space: normal;
+      }
+
+      .site-nav {
+        width: 100%;
+        margin-left: 0;
+      }
+
+      .nav-links {
+        justify-content: flex-start;
+        margin-left: 0;
+      }
+
+      h2 {
+        scroll-margin-top: 112px;
+      }
+    }
+
     @media (max-width: 900px) {
       .committee-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -284,10 +401,6 @@
     }
 
     @media (max-width: 640px) {
-      header {
-        padding: 20px 16px;
-      }
-
       main.container {
         width: calc(100% - 24px);
         margin: 16px auto 32px;
@@ -325,11 +438,23 @@
       }
 
       header {
+        position: static;
         background: none;
         color: #000000;
         border-bottom: 2px solid #000000;
         box-shadow: none;
+      }
+
+      .header-inner {
         padding: 12px 0;
+      }
+
+      header h1 a {
+        color: #000000;
+      }
+
+      .site-nav {
+        display: none;
       }
 
       main.container {
@@ -346,11 +471,23 @@
 
 <body>
   <header>
-    <h1>IUPRAI Doctoral Dissertation Awards</h1>
+    <div class="header-inner">
+      <h1><a href="#">IUPRAI Doctoral Dissertation Awards</a></h1>
+      <nav class="site-nav" aria-label="Section navigation">
+        <div class="nav-links">
+          <a href="#program-overview" class="active">Overview</a>
+          <a href="#eligibility">Eligibility</a>
+          <a href="#nomination">Nomination</a>
+          <a href="#important-dates">Important Dates</a>
+          <a href="#review-process">Review Process</a>
+          <a href="#award-committee">Award Committee</a>
+        </div>
+      </nav>
+    </div>
   </header>
 
   <main class="container">
-    <section aria-labelledby="program-overview">
+    <section class="overview-section" aria-labelledby="program-overview">
       <h2 id="program-overview">IUPRAI- Doctoral Dissertation Award Program</h2>
       <p>
         IUPRAI (Indian Unit of Pattern Recognition and Artificial Intelligence) - Doctoral Dissertation Award program has been established to recognize and encourage excellence in research and writing by doctoral candidates in the areas of Computer Vision, Computer Graphics, Image Processing and Pattern Recognition.
@@ -402,7 +539,7 @@
       <p>
         Each nomination must be mailed as a single zip file by the research supervisor, before <strong>December 1, 2026</strong> to the address:
       </p>
-      <p class="email-box">pguha [at] iitg [dot] ac [dot] in, vineethnb [at] cse [dot] iith [dot] ac [dot] in</p>
+      <p class="email-box"><a href="mailto:iuprai.awards@gmail.com">iuprai.awards@gmail.com</a></p>
     </section>
 
     <section aria-labelledby="important-dates">
@@ -534,6 +671,37 @@
       </div>
     </section>
   </main>
+
+  <script>
+    (function () {
+      const navLinks = Array.from(document.querySelectorAll('.site-nav a'));
+      const headings = navLinks
+        .map(link => document.querySelector(link.getAttribute('href')))
+        .filter(Boolean);
+
+      function updateActiveLink() {
+        let currentId = headings[0] && headings[0].id;
+
+        for (const heading of headings) {
+          if (heading.getBoundingClientRect().top <= 130) {
+            currentId = heading.id;
+          }
+        }
+
+        if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 8) {
+          currentId = headings[headings.length - 1].id;
+        }
+
+        navLinks.forEach(link => {
+          link.classList.toggle('active', link.getAttribute('href') === '#' + currentId);
+        });
+      }
+
+      window.addEventListener('scroll', updateActiveLink, { passive: true });
+      window.addEventListener('resize', updateActiveLink, { passive: true });
+      updateActiveLink();
+    })();
+  </script>
 </body>
 </html>
 
