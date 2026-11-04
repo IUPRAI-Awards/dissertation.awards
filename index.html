@@ -254,7 +254,7 @@
 
     .committee-grid {
       display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
+      grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 20px;
       margin-top: 18px;
     }
@@ -277,7 +277,8 @@
       border-color: var(--accent-border);
     }
 
-    .committee-card.is-chair {
+    .committee-card.is-chair,
+    .committee-card.is-convenor {
       background-color: #f7faff;
       border-color: var(--accent-border);
     }
@@ -330,6 +331,12 @@
       background-color: var(--primary-blue);
       color: #ffffff;
       border-color: var(--primary-blue);
+    }
+
+    .member-role.role-convenor {
+      background-color: #1d68c4;
+      color: #ffffff;
+      border-color: #1d68c4;
     }
 
     .member-name {
@@ -394,7 +401,7 @@
       }
     }
 
-    @media (max-width: 900px) {
+    @media (max-width: 780px) {
       .committee-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
@@ -583,6 +590,18 @@
           </h3>
           <p class="member-dept">Department of Computer Science and Engineering</p>
           <p class="member-inst">Indian Institute of Technology Hyderabad</p>
+        </article>
+
+        <article class="committee-card is-convenor">
+          <div class="member-photo-wrap">
+            <img src="assets/pguha.png" alt="Prof. Prithwijit Guha" class="pos-top" loading="lazy">
+          </div>
+          <span class="member-role role-convenor">Convenor</span>
+          <h3 class="member-name">
+            <a href="https://www.iitg.ac.in/eee/faculty_profile.php?name=prg" target="_blank" rel="noopener noreferrer">Prof. Prithwijit Guha</a>
+          </h3>
+          <p class="member-dept">Department of Electronics &amp; Electrical Engineering</p>
+          <p class="member-inst">Indian Institute of Technology Guwahati</p>
         </article>
 
         <article class="committee-card">
